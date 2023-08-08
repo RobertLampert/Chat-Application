@@ -26,7 +26,6 @@ import theme from "./theme";
 import ChatBubbleList from "./chatbubblelist";
 import TopBar from "./topbar";
 import logo from "./logo.png";
-// import user from "./user.png";
 import PortraitIcon from '@mui/icons-material/Portrait';
 
 const Project2Component = () => {
@@ -55,7 +54,7 @@ const Project2Component = () => {
     setState({ showjoinfields: false, alreadyexists: false });
   };
 
-  const onExists = dataFromServer => {
+  const onDuplicateName = dataFromServer => {
     setState({ nameStatus: dataFromServer, chatName: "" });
   };
 
@@ -80,14 +79,14 @@ const Project2Component = () => {
   const serverConnect = () => {
     // connect to server
     const socket = io.connect("localhost:5000", { forceNew: true });
-    socket.on("nameexists", onExists);
+    socket.on("nameexists", onDuplicateName);
     socket.on("welcome", onWelcome);
     socket.on("someonejoined", addMessage);
     socket.on('someoneleft', addMessage);
     socket.on("someoneistyping", onTyping);
     socket.on("newmessage", onNewMessage);
-    socket.on("roomlist", roomArr);
-    socket.on("getusers", onlineUsersArr);
+    socket.on("roomlist", roomNameList);
+    socket.on("getusers", setOnlineUsers);
     setState({ socket: socket, nameStatus: "Enter a Chat Name", roomStatus: "Enter a New Room Name", chatName: "", roomName: "" });
   };
 
@@ -98,11 +97,11 @@ const Project2Component = () => {
     setState({ messages: messages });
   };
 
-  const roomArr = (dataFromServer) => {
+  const roomNameList = (dataFromServer) => {
     setState({ rooms: dataFromServer });
   };
 
-  const onlineUsersArr = (dataFromServer) => {
+  const setOnlineUsers = (dataFromServer) => {
     setState({ onlineUsers: dataFromServer });
   };
 
@@ -170,7 +169,7 @@ const Project2Component = () => {
           <DialogTitle style={{ textAlign: "center" }}>Who's On?</DialogTitle>
           <DialogContent>
             <TableContainer component={Paper}>
-              <Table size="small" aria-label="a table">
+              <Table size="small" aria-label="online user table">
                 <TableBody>
                 {state.onlineUsers.map((user, idx) => {
                   return(
@@ -218,7 +217,7 @@ const Project2Component = () => {
             <CardContent>
               <FormControl>
               <RadioGroup
-                aria-label="room"
+                aria-label="radio"
                 defaultValue="Main"
                 value={state.radioValue}
                 name="rooms"
