@@ -1,4 +1,4 @@
-const matColours = require("./matdes100colours.json");
+const Colours = require("./Colours.json");
 
 let users = [`Admin`];
 let rooms = [`Main`];
@@ -19,8 +19,8 @@ const addUsers = (clientName, roomName) => {
     // add user name to list of users
 
     let userColour =
-      matColours.colours[
-        Math.floor(Math.random() * matColours.colours.length) + 1
+      Colours.colours[
+        Math.floor(Math.random() * Colours.colours.length) + 1
       ];
     users.push(clientName);
     colours[clientName] = userColour;
