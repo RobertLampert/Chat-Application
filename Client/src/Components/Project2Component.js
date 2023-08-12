@@ -124,7 +124,7 @@ const Project2Component = () => {
                 { from: state.chatName, text: state.message },
                 err => { }
             );
-            setState({ isTyping: false });
+            setState({ isTyping: false, message: "" });
         }
     };
 

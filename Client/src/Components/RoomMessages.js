@@ -28,7 +28,7 @@ const RoomMessages = (props) => {
             placeholder="type something here"
             autoFocus={true}
             value={message}
-            onKeyPress={e => (e.key === "Enter" ? props.handleSendMessage : null)}
+            onKeyPress={e => (e.key === "Enter" ? props.handleSendMessage() : null)}
         />
         <Typography color="primary">{typingMsg}</Typography>
     </Fragment>

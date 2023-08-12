@@ -8,7 +8,7 @@ const TopBar = props => {
         <AppBar position="static">
             <Toolbar color="primary" title="App Toolbar">
                 <Typography variant="h6" color="inherit">
-                    Chat it Up! - Info3139
+                    LiveSync
                 </Typography>
                 <section style={{ height: 90, width: 90, marginLeft: "auto" }}>
                 {!props.display && (

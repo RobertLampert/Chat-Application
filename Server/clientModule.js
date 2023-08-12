@@ -46,7 +46,6 @@ const doesUserExist = (user) => {
 };
 
 const getUsers = (roomName) => {
-    console.log(onlineList[roomName]);
     return onlineList[roomName];
 };
 
